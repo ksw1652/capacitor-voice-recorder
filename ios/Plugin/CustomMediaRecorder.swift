@@ -30,8 +30,8 @@ class CustomMediaRecorder {
             audioRecorder = try AVAudioRecorder(url: audioFilePath, settings: settings)
             audioRecorder.record()
             status = CurrentRecordingStatus.RECORDING
-            audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setActive(true)
+//             audioSession = AVAudioSession.sharedInstance()
+//             try audioSession.setActive(true)
             return true
         } catch {
             return false
