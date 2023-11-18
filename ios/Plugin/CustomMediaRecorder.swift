@@ -24,14 +24,13 @@ class CustomMediaRecorder {
         do {
             recordingSession = AVAudioSession.sharedInstance()
             originalRecordingSessionCategory = recordingSession.category
-            try recordingSession.setCategory(AVAudioSession.Category.playAndRecord)
+            try recordingSession.setCategory(.record)
+            try recordingSession.setMode(.measurement)
             try recordingSession.setActive(true)
             audioFilePath = getDirectoryToSaveAudioFile().appendingPathComponent("\(UUID().uuidString).aac")
             audioRecorder = try AVAudioRecorder(url: audioFilePath, settings: settings)
             audioRecorder.record()
             status = CurrentRecordingStatus.RECORDING
-            audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setActive(true)
             return true
         } catch {
             return false
