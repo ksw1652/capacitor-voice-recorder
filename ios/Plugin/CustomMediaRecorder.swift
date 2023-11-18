@@ -30,6 +30,9 @@ class CustomMediaRecorder {
             audioRecorder = try AVAudioRecorder(url: audioFilePath, settings: settings)
             audioRecorder.record()
             status = CurrentRecordingStatus.RECORDING
+            // 녹음을 시작하면서 오디오 기능도 활성화
+            audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setActive(true)
             return true
         } catch {
             return false
